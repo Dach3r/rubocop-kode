@@ -28,9 +28,13 @@ require:
 - `Kode/NoArgumentAlignment` — one space after commas between call arguments.
 - `Kode/NoHashAlignment` — one space after `=>` or `:` in hash pairs.
 - `Kode/NoAssignmentAlignment` — one space before `=` in assignments and setters.
-- `Kode/NoAccessModifierAlignment` — code after a bare access modifier aligns with it.
 
 All prevent column-alignment via extra spaces and are auto-correctable.
+
+Indentation of methods after `private`/`protected` (flush vs. indented) is
+already covered by core RuboCop's `Layout/IndentationWidth` and
+`Layout/IndentationConsistency` (`EnforcedStyle: indented_internal_methods`)
+— no custom cop needed for that.
 
 ## Development
 
