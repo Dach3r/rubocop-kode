@@ -1,0 +1,19 @@
+Kode/NoArgumentAlignment:
+  Description: "Use exactly one space after commas between method call arguments, preventing column alignment."
+  Enabled: true
+  VersionAdded: "0.1"
+
+Kode/NoHashAlignment:
+  Description: "Use exactly one space after `=>` or `:` in hash pairs, preventing column alignment."
+  Enabled: true
+  VersionAdded: "0.1"
+
+Kode/NoAssignmentAlignment:
+  Description: "Use exactly one space before `=` in local/instance variable and setter assignments, preventing column alignment."
+  Enabled: true
+  VersionAdded: "0.1"
+
+Kode/NoAccessModifierAlignment:
+  Description: "Align code with the surrounding bare access modifier (private/protected/public/module_function)."
+  Enabled: true
+  VersionAdded: "0.1"
