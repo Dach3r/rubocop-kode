@@ -1,3 +1,33 @@
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
+
+Style/EndlessMethod:
+  Enabled: true
+  EnforcedStyle: disallow
+
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: percent
+
+Bundler/OrderedGems:
+  Enabled: true
+
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  AllowForAlignment: false
+
+Layout/DefEndAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: start_of_line
+
+Layout/IndentationWidth:
+  Enabled: true
+
+Layout/IndentationConsistency:
+  Enabled: true
+
 Kode/NoArgumentAlignment:
   Description: "Use exactly one space after commas between method call arguments, preventing column alignment."
   Enabled: true

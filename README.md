@@ -1,6 +1,10 @@
 # rubocop-kode
 
-Custom RuboCop cops, department `Kode`.
+House RuboCop config in a single dependency: bundles
+[rubocop-rails-omakase](https://github.com/rails/rubocop-rails-omakase) as a
+base style, adds a few extra house rules on top of it, and layers custom
+cops (`Kode` department). No need to also depend on `rubocop-rails-omakase`
+or repeat its config — this gem pulls it in transitively and inherits it.
 
 ## Install
 
@@ -23,6 +27,24 @@ require:
   - rubocop-kode
 ```
 
+That's it — no `inherit_gem` needed, this gem already inherits
+`rubocop-rails-omakase`'s `rubocop.yml` and layers the house rules and
+`Kode/*` cops on top. Add project-specific overrides below the `require` key
+as usual.
+
+## What's included on top of Omakase
+
+- `Style/EndlessMethod` — disallowed
+- `Style/SymbolArray` — percent style
+- `Bundler/OrderedGems` — enabled
+- `Layout/SpaceInsidePercentLiteralDelimiters` — enabled
+- `Layout/ExtraSpacing` — `AllowForAlignment: false`
+- `Layout/DefEndAlignment` — aligned with `start_of_line`
+- `Layout/IndentationWidth` / `Layout/IndentationConsistency` — enabled
+  (Omakase ships these disabled; enabling them enforces its
+  `indented_internal_methods` style: methods after a bare access modifier
+  get one extra indent level)
+
 ## Cops
 
 - `Kode/NoArgumentAlignment` — one space after commas between call arguments.
@@ -30,11 +52,6 @@ require:
 - `Kode/NoAssignmentAlignment` — one space before `=` in assignments and setters.
 
 All prevent column-alignment via extra spaces and are auto-correctable.
-
-Indentation of methods after `private`/`protected` (flush vs. indented) is
-already covered by core RuboCop's `Layout/IndentationWidth` and
-`Layout/IndentationConsistency` (`EnforcedStyle: indented_internal_methods`)
-— no custom cop needed for that.
 
 ## Development
 
