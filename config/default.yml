@@ -5,6 +5,10 @@ Style/EndlessMethod:
   Enabled: true
   EnforcedStyle: disallow
 
+Style/SingleLineMethods:
+  Enabled: true
+  AllowIfMethodIsEmpty: false
+
 Style/SymbolArray:
   Enabled: true
   EnforcedStyle: percent
