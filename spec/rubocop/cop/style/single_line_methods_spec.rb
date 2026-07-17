@@ -10,7 +10,7 @@ RSpec.describe RuboCop::Cop::Style::SingleLineMethods, :config do
     RUBY
 
     expect_correction(<<~RUBY)
-      def index;#{' '}
+      def index;#{" "}
       end
     RUBY
   end
