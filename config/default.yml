@@ -59,6 +59,6 @@ Kode/NoAssignmentAlignment:
   VersionAdded: "0.1"
 
 Kode/NoCommentsAboveGems:
-  Description: "Don't allow comments directly above `gem` declarations."
+  Description: "Don't allow comments or blank lines directly above `gem` declarations."
   Enabled: true
   VersionAdded: "0.1"

@@ -26,7 +26,7 @@ RSpec.describe RuboCop::Cop::Kode::NoCommentsAboveGems, :config do
     RUBY
   end
 
-  it "does not register an offense when there is no comment above a gem" do
+  it "does not register an offense when there is no comment or blank line above a gem" do
     expect_no_offenses(<<~RUBY)
       gem "rails", "~> 8.1.3"
       gem "propshaft"
@@ -34,18 +34,54 @@ RSpec.describe RuboCop::Cop::Kode::NoCommentsAboveGems, :config do
     RUBY
   end
 
-  it "does not register an offense for a comment separated by a blank line" do
-    expect_no_offenses(<<~RUBY)
-      # unrelated comment
-
-      gem "puma", ">= 5.0"
-    RUBY
-  end
-
   it "does not register an offense for a trailing comment on the previous gem" do
     expect_no_offenses(<<~RUBY)
       gem "puma", ">= 5.0" # some note
       gem "importmap-rails"
+    RUBY
+  end
+
+  it "registers an offense for a blank line above a gem" do
+    expect_offense(<<~RUBY)
+      gem "propshaft"
+
+      ^{} Do not leave a blank line above `gem` declarations.
+      gem "puma", ">= 5.0"
+    RUBY
+
+    expect_correction(<<~RUBY)
+      gem "propshaft"
+      gem "puma", ">= 5.0"
+    RUBY
+  end
+
+  it "registers a single offense for multiple contiguous blank lines above a gem" do
+    expect_offense(<<~RUBY)
+      gem "propshaft"
+
+      ^{} Do not leave a blank line above `gem` declarations.
+
+      gem "puma", ">= 5.0"
+    RUBY
+
+    expect_correction(<<~RUBY)
+      gem "propshaft"
+      gem "puma", ">= 5.0"
+    RUBY
+  end
+
+  it "registers an offense for a blank line below a comment, then flags the exposed comment on the next pass" do
+    expect_offense(<<~RUBY)
+      # unrelated comment
+
+      ^{} Do not leave a blank line above `gem` declarations.
+      gem "puma", ">= 5.0"
+    RUBY
+
+    # Autocorrect converges over multiple internal passes: first the blank
+    # line goes, which then exposes the comment as directly above the gem.
+    expect_correction(<<~RUBY)
+      gem "puma", ">= 5.0"
     RUBY
   end
 end

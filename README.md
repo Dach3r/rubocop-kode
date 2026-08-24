@@ -19,6 +19,12 @@ Or straight from GitHub while it's not yet published to RubyGems:
 gem "rubocop-kode", git: "https://github.com/Dach3r/rubocop-kode", require: false
 ```
 
+Already installed from git and want the latest version? Run:
+
+```
+bundle update rubocop-kode
+```
+
 ## Usage
 
 ```yaml
@@ -50,6 +56,7 @@ as usual.
 - `Kode/NoArgumentAlignment` — one space after commas between call arguments.
 - `Kode/NoHashAlignment` — one space after `=>` or `:` in hash pairs.
 - `Kode/NoAssignmentAlignment` — one space before `=` in assignments and setters.
+- `Kode/NoCommentsAboveGems` — disallows comments or blank lines directly above `gem` declarations.
 
 All prevent column-alignment via extra spaces and are auto-correctable.
 
