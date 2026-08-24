@@ -9,6 +9,7 @@ module RuboCop
 
         COMMENT_MSG = "Do not place comments above `gem` declarations."
         BLANK_LINE_MSG = "Do not leave a blank line above `gem` declarations."
+        SOURCE_MSG = "Leave a blank line below the `source` declaration."
 
         RESTRICT_ON_SEND = [:gem].freeze
 
@@ -18,6 +19,7 @@ module RuboCop
 
           check_comments(comments)
           check_blank_lines(top_line)
+          check_source_declaration(top_line)
         end
 
         private
@@ -49,6 +51,19 @@ module RuboCop
 
           add_offense(range, message: BLANK_LINE_MSG) do |corrector|
             corrector.remove(range)
+          end
+        end
+
+        def check_source_declaration(top_line)
+          prev_line = top_line - 1
+
+          return unless source_declaration_line?(prev_line)
+
+          insertion_point = processed_source.buffer.line_range(prev_line).end_pos
+          range = range_between(insertion_point, insertion_point)
+
+          add_offense(range, message: SOURCE_MSG) do |corrector|
+            corrector.insert_after(range, "\n")
           end
         end
 
