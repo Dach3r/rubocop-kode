@@ -57,3 +57,8 @@ Kode/NoAssignmentAlignment:
   Description: "Use exactly one space before `=` in local/instance variable and setter assignments, preventing column alignment."
   Enabled: true
   VersionAdded: "0.1"
+
+Kode/NoCommentsAboveGems:
+  Description: "Don't allow comments directly above `gem` declarations."
+  Enabled: true
+  VersionAdded: "0.1"
