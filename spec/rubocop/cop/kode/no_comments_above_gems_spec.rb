@@ -70,6 +70,14 @@ RSpec.describe RuboCop::Cop::Kode::NoCommentsAboveGems, :config do
     RUBY
   end
 
+  it "does not register an offense for a blank line separating source from the first gem" do
+    expect_no_offenses(<<~RUBY)
+      source "https://rubygems.org"
+
+      gem "bootsnap", require: false
+    RUBY
+  end
+
   it "registers an offense for a blank line below a comment, then flags the exposed comment on the next pass" do
     expect_offense(<<~RUBY)
       # unrelated comment

@@ -40,6 +40,8 @@ module RuboCop
           first_blank_line = last_blank_line
           first_blank_line -= 1 while blank_line?(first_blank_line - 1)
 
+          return if source_declaration_line?(first_blank_line - 1)
+
           range = range_between(
             processed_source.buffer.line_range(first_blank_line).begin_pos,
             processed_source.buffer.line_range(top_line).begin_pos
@@ -52,6 +54,12 @@ module RuboCop
 
         def blank_line?(line)
           line >= 1 && processed_source.raw_source.lines[line - 1].to_s.strip.empty?
+        end
+
+        def source_declaration_line?(line)
+          return false if line < 1
+
+          processed_source.raw_source.lines[line - 1].to_s.strip.match?(/\Asource\b/)
         end
 
         def leading_comments(node)
