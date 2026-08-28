@@ -70,3 +70,8 @@ Kode/NoCommentsAboveGems:
   Description: "Don't allow comments or blank lines directly above `gem` declarations."
   Enabled: true
   VersionAdded: "0.1"
+
+Kode/NoNilReturn:
+  Description: "Use `return` instead of `return nil`."
+  Enabled: true
+  VersionAdded: "0.5"

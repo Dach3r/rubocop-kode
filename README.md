@@ -57,8 +57,10 @@ as usual.
 - `Kode/NoHashAlignment` — one space after `=>` or `:` in hash pairs.
 - `Kode/NoAssignmentAlignment` — one space before `=` in assignments and setters.
 - `Kode/NoCommentsAboveGems` — disallows comments or blank lines directly above `gem` declarations.
+- `Kode/NoNilReturn` — use `return` instead of `return nil`.
 
-All prevent column-alignment via extra spaces and are auto-correctable.
+All are auto-correctable. `NoArgumentAlignment`, `NoHashAlignment`, and `NoAssignmentAlignment`
+prevent column-alignment via extra spaces.
 
 ## Development
 
